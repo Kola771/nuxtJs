@@ -1,3 +1,3 @@
 <template>
-    <div>Index page</div>
+    <div>Hello nuxt ! 🔥⛄⛄</div>
 </template>
