@@ -1,6 +1,8 @@
 <template>
-  <div class="text-4xl font-bold text-amber-500">
-    <!-- <NuxtWelcome /> -->
-    Hello nuxt
+  <div>
+    <!-- Composant permetant d'afficher le contenu du dossier "pages/" -->
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
