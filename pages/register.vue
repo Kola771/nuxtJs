@@ -60,7 +60,7 @@ const form = ref<RegisterPayload>({
 
 async function register(payload: RegisterPayload) {
   console.log(payload);
-  const res = await axios.post("/api/register", payload);
+  const res = await axios.post("/register", payload);
 }
 </script>
 
