@@ -21,14 +21,6 @@
 </script>
 
 <style scoped>
-  label {
-    @apply block mb-2 text-sm font-medium text-gray-900;
-  }
-
-  input {
-    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded w-full p-2.5 focus:ring-gray-900 focus:border-gray-900;
-  }
-
   form {
     @apply w-[90%] flex flex-col gap-y-4 px-4 py-6 rounded mx-auto
   }

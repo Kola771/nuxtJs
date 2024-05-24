@@ -3,8 +3,10 @@
     <nav class="flex justify-between items-center mb-4">
       <h1>Mes liens</h1>
       <!-- <SearchInput :modelValue="search" @update:modelValue="$event => search = $event" /> -->
-      <SearchInput :model="search" />
-      <NuxtLink to="/links/create">Créer un lien</NuxtLink>
+      <div class="flex items-center justify-end gap-x-4">
+        <SearchInput :model="search" />
+        <NuxtLink class="text-white bg-gray-800 px-4 py-2 rounded" to="/links/create">Créer un lien</NuxtLink>
+      </div>
     </nav>
 
     <div v-if="true">
