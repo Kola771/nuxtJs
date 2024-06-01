@@ -6,3 +6,19 @@
     </NuxtLayout>
   </div>
 </template>
+
+
+<script setup lang="ts">
+
+useHead({
+  title: 'Url shortener',
+  link: [
+    {
+      rel: 'icon',
+      href: '/app-icon.png',
+      type: 'image/png'
+    }
+  ]
+});
+
+</script>
