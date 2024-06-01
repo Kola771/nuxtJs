@@ -10,11 +10,11 @@
 import axios from 'axios';
 
 const user = null;
-// onMounted(async () => {
+onMounted(async () => {
   const{data} = await axios.get("/user");
   console.log(data);
   
-// })
+})
 </script>
 
 <style>
