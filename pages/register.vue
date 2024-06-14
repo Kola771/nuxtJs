@@ -38,19 +38,12 @@
 </template>
 
 <script lang="ts" setup>
-import axios from "axios";
+import type { RegisterPayload } from '~/@types';
 
 definePageMeta({
   layout: 'centered',
   middleware: ["guest"]
 });
-
-interface RegisterPayload {
-  name: string;
-  email: string;
-  password: string;
-  password_confirmation: string;
-}
 
 const form = ref<RegisterPayload>({
   name: "",
@@ -59,16 +52,7 @@ const form = ref<RegisterPayload>({
   password_confirmation: "",
 });
 
-async function register(payload: RegisterPayload) {
-  await axios.post("/register", payload);
-
-  await axios.post("/login", {
-    email: payload.email,
-    password: payload.password
-  });
-
-  useRouter().push("/me");
-}
+const {register} = useAuth();
 </script>
 
 <style>

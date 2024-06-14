@@ -26,27 +26,20 @@
 </template>
 
 <script lang="ts" setup>
-import axios from "axios";
+import type { LoginPayload } from '~/@types';
 
 definePageMeta({
   layout: 'centered',
   middleware: ["guest"]
 });
 
-interface LoginPayload {
-  email: string;
-  password: string;
-}
 
 const form = ref<LoginPayload>({
   email: "",
   password: "",
 });
 
-async function login(payload: LoginPayload) {
-  const res = await axios.post("/login", payload);
-  useRouter().push("/me");
-}
+const {login} = useAuth();
 </script>
 
 <style>
