@@ -60,6 +60,11 @@
 </template>
 
 <script lang="ts" setup>
+
+definePageMeta({
+  middleware: ["auth"]
+})
+
 const links = [
   {
     short_links: "lkjklsdf",

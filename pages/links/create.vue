@@ -1,17 +1,14 @@
 <template>
   <div class="mx-auto max-w-md border rounded py-4 px-3 shadow-xl prose">
-    <h1 class="font-bold text-[20px]">Modifier le lien</h1>
-    <GoBack />
+    <h1>Crééz un nouveau lien</h1>
+    <GoBack>Revenir en arrière</GoBack>
+
     <form>
-      <label for="">
-        <div>Lien Court</div>
-        <input type="text">
-      </label>
-      <label for="">
-        <div>Lien Complet</div>
-        <input type="text">
-      </label>
-      <button>Modifier le lien</button>
+      <div>
+        <label for="lien">Lien complet</label>
+        <input type="text" id="lien" name="full_link" autofocus placeholder="Entrez le lien complet">
+      </div>
+      <button class="btn">Créer le lien</button>
     </form>
   </div>
 </template>
