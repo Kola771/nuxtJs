@@ -1,22 +1,26 @@
 <template>
   <div>
-    <pre>{{ data }}</pre>
-    <p><strong>Nom d'utilisateur: </strong> Koladé ABOUDOU M.</p>
-    <p><strong>Email: </strong> Koladeaboudou@gmail.com</p>
+    <pre>{{ userLogin.data }}</pre>
   </div>
 </template>
-
-<script lang="ts" setup>
-import axios from 'axios';
-
-const user = null;
-onMounted(async () => {
-  const{data} = await axios.get("/user");
-  console.log(data);
-  
-})
-</script>
 
 <style>
 
 </style>
+
+<script lang="ts" setup>
+import axios from 'axios';
+
+
+const userLogin =  ref()
+
+// console.log("zzzzz");
+
+onMounted(async ()=>{
+  const user  =  await axios.get("/user")
+  userLogin.value = user
+})
+
+</script>
+
+<style></style>

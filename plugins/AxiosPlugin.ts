@@ -6,6 +6,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     axios.defaults.baseURL = `${config.public.apiUrl}/api`;
     axios.defaults.headers.common['Content-Type'] = 'application/json'; // on envoie du json au serveur
     axios.defaults.headers.common['Accept'] = 'application/json'; // on attend du serveur du json 
+    axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; 
     axios.defaults.withCredentials = true; // 
     axios.defaults.withXSRFToken = true; // 
 
@@ -13,4 +14,4 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     await axios.get("/sanctum/csrf-cookie", {
         baseURL: config.public.apiUrl
     });
-})
+});
