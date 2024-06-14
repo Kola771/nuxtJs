@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="userLogin">
-      <p><strong>Nom d'utilisateur :</strong> {{userLogin.name}}</p>
-      <p><strong>Adresse électronique :</strong> {{userLogin.email}}</p>
+    <div v-if="user">
+      <p><strong>Nom d'utilisateur :</strong> {{user.name}}</p>
+      <p><strong>Adresse électronique :</strong> {{user.email}}</p>
     </div>
   </div>
 </template>
@@ -18,12 +18,14 @@ definePageMeta({
   middleware: ["auth"]
 })
 
-const userLogin =  ref();
+const { user } = useAuth();
 
-onMounted(async ()=>{
-  const user  =  await axios.get("/user")
-  userLogin.value = user.data
-})
+// const userLogin =  ref();
+
+// onMounted(async ()=>{
+//   const user  =  await axios.get("/user")
+//   userLogin.value = user.data
+// })
 
 </script>
 
