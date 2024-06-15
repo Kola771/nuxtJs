@@ -3,13 +3,18 @@
     <h1>Crééz un nouveau lien</h1>
     <GoBack>Revenir en arrière</GoBack>
 
-    <form>
+    <!-- <form>
       <div>
         <label for="lien">Lien complet</label>
         <input type="text" id="lien" name="full_link" autofocus placeholder="Entrez le lien complet">
       </div>
       <button class="btn">Créer le lien</button>
-    </form>
+    </form> -->
+
+    <FormKit type="form" submit-label="Créer le lien" :submit-attrs="{inputClass: 'btn'}">
+      <FormKit type="url" name="full_link" label="Lien complet"/>
+      <FormKit type="text" name="short_link" label="Lien court"/>
+    </FormKit>
   </div>
 </template>
 

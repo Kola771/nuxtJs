@@ -13,10 +13,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     // intercepteur de réponse
     axios.interceptors.response.use(
         (res) => res,
-        (error: AxiosError) => {
+        async (error: AxiosError) => {
             if ([401, 419].includes((error.response as AxiosResponse).status)) {
                 const { logout } = useAuth();
-                logout();
+                await logout();
             } else {
                 return Promise.reject(Error);
             }

@@ -5,6 +5,8 @@ import type { LoginPayload, RegisterPayload, User } from "~/@types";
 const user = ref<User|null>(null);
 
 export const useAuth = () => {
+  /** Routeur vue */
+  const router = useRouter();
   /**
    * C'est une fonction qui récupère l'utilisateur connecté dans la base de données
    */
@@ -36,20 +38,20 @@ export const useAuth = () => {
       password: payload.password
     });
 
-    useRouter().push("/me");
+    router.push("/me");
   }
 
   // login
   async function login(payload: LoginPayload) {
     const res = await axios.post("/login", payload);
-    user.value = null;
-    useRouter().push("/me");
+    router.push("/me");
   }
 
   // logout
   async function logout() {
     await axios.post("/logout");
-    useRouter().replace("/login");
+    user.value = null;
+    router.replace("/login");
   }
 
   return {

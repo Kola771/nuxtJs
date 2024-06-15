@@ -2,7 +2,7 @@
   <div class="mx-auto max-w-md border rounded py-4 px-3 shadow-xl prose">
     <h1 class="font-bold text-[20px]">Modifier le lien</h1>
     <GoBack />
-    <form>
+    <!-- <form>
       <label for="">
         <div>Lien Court</div>
         <input type="text">
@@ -12,7 +12,12 @@
         <input type="text">
       </label>
       <button>Modifier le lien</button>
-    </form>
+    </form> -->
+
+    <FormKit type="form" submit-label="Modifier le lien" :submit-attrs="{inputClass: 'btn'}">
+      <FormKit type="url" name="short_link" label="Lien court"/>
+      <FormKit type="text" name="full_link" label="Lien complet"/>
+    </FormKit>
   </div>
 </template>
 
