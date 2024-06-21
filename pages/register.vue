@@ -2,7 +2,7 @@
   <div>
     <div class="flex flex-col gap-y-2 border-gray-800">
       <h1 class="text-center font-bold text-[1.375rem]">Inscription</h1>
-      
+
       <div class="flex flex-col gap-y-3 p-4 text-[.9375rem]">
         <!-- <form @submit.prevent="register(form)">
           <div class="flex flex-col gap-y-1">
@@ -34,31 +34,18 @@
           </div>
         </form> -->
 
-        <FormKit type="form" 
-        @submit="handleRegister"
-        #default={value}
-        submit-label="S'inscrire" 
-        :submit-attrs="{inputClass: 'mt-4 w-[35%] bg-gray-800 text-white hover:bg-gray-900 py-2 rounded flex items-center justify-center animate-pulse'}">
-          <FormKit type="text" name="name" 
-          label="Nom et prénoms"
-          validation="required"
-          autocomplete="off"
-          />
-          <FormKit type="email" name="email" 
-          label="Adresse électronique"
-          validation="required|email"
-          autocomplete="off"
-          />
-          <FormKit type="password"
-          validation="required"
-          name="password" 
-          label="Mot de passe"/>
-          <FormKit type="password"
-          validation="required"
-          name="password_confirmation" 
-          label="Confirmation du mot de passe"/>
+        <FormKit type="form" @submit="handleRegister" submit-label="S'inscrire"
+          :submit-attrs="{ inputClass: 'mt-4 w-[35%] bg-gray-800 text-white hover:bg-gray-900 py-2 rounded flex items-center justify-center animate-pulse' }">
+          <FormKit type="text" name="name" label="Nom et prénoms" validation="required" autocomplete="off" />
+          <FormKit type="email" name="email" label="Adresse électronique" validation="required|email"
+            autocomplete="off" />
+          <FormKit type="password" validation="required" name="password" label="Mot de passe" />
+          <FormKit type="password" validation="required" name="password_confirmation"
+            label="Confirmation du mot de passe" />
         </FormKit>
-        <p>Vous avez déjà un compte ? <NuxtLink class="text-blue-500 underline font-medium" to="/login">connectez-vous !</NuxtLink></p>
+        <p>Vous avez déjà un compte ? <NuxtLink class="text-blue-500 underline font-medium" to="/login">connectez-vous !
+          </NuxtLink>
+        </p>
       </div>
     </div>
   </div>
@@ -66,6 +53,8 @@
 
 <script lang="ts" setup>
 import type { RegisterPayload } from '~/@types';
+import type { FormKitNode } from "@formkit/core";
+import { AxiosError } from "axios";
 
 definePageMeta({
   layout: 'centered',
@@ -79,17 +68,17 @@ const form = ref<RegisterPayload>({
   password_confirmation: "",
 });
 
-const {register} = useAuth();
+const { register } = useAuth();
 
-async function handleRegister(payload: RegisterPayload) {
- try {
-  await register(payload);
- } catch (e: unknown) {
-  
- }
+async function handleRegister(payload: RegisterPayload, node?: FormKitNode) {
+  try {
+    await register(payload);
+  } catch (e: unknown) {
+    if (e instanceof AxiosError && e.response?.status === 422) {
+      node?.setErrors([], e.response?.data.errors);
+    }
+  }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

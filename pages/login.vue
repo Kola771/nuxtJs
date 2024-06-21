@@ -44,6 +44,8 @@
 
 <script lang="ts" setup>
 import type { LoginPayload } from '~/@types';
+import type { FormKitNode } from "@formkit/core";
+import { AxiosError } from "axios";
 
 definePageMeta({
   layout: 'centered',
@@ -58,11 +60,13 @@ const form = ref<LoginPayload>({
 
 const {login} = useAuth();
 
-async function handleLogin(payload: LoginPayload) {
+async function handleLogin(payload: LoginPayload, node?: FormKitNode) {
  try {
   await login(payload);
  } catch (e: unknown) {
-  
+    if (e instanceof AxiosError && e.response?.status === 422) {
+      node?.setErrors([], e.response?.data.errors);
+    }
  }
 }
 </script>
