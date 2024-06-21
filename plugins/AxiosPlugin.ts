@@ -10,13 +10,24 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     axios.defaults.withCredentials = true; // 
     axios.defaults.withXSRFToken = true; // 
 
+    let isInitialCheck = true;
+    let route = useRoute();
+
     // intercepteur de réponse
     axios.interceptors.response.use(
         (res) => res,
         async (error: AxiosError) => {
             if ([401, 419].includes((error.response as AxiosResponse).status)) {
                 const { logout } = useAuth();
-                await logout();
+                
+                if (!["/login", "/register"].includes(route.path)) {
+                    if (isInitialCheck) {
+                        // On ne fait rien si c'est la première authentification
+                        isInitialCheck = false;
+                    } else {
+                        await logout();
+                    }
+                }
             } else {
                 return Promise.reject(Error);
             }

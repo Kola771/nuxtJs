@@ -11,7 +11,7 @@
       <button class="btn">Créer le lien</button>
     </form> -->
 
-    <FormKit type="form" submit-label="Créer le lien" :submit-attrs="{inputClass: 'btn'}">
+    <FormKit type="form" submit-label="Créer le lien" :submit-attrs="{inputClass: 'mt-4 w-[35%] bg-gray-800 text-white hover:bg-gray-900 py-2 rounded flex items-center justify-center animate-pulse'}">
       <FormKit type="url" name="full_link" label="Lien complet"/>
       <FormKit type="text" name="short_link" label="Lien court"/>
     </FormKit>
