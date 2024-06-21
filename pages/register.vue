@@ -54,18 +54,11 @@
 <script lang="ts" setup>
 import type { RegisterPayload } from '~/@types';
 import type { FormKitNode } from "@formkit/core";
-import { AxiosError } from "axios";
+import axios from "axios";
 
 definePageMeta({
   layout: 'centered',
   middleware: ["guest"]
-});
-
-const form = ref<RegisterPayload>({
-  name: "",
-  email: "",
-  password: "",
-  password_confirmation: "",
 });
 
 const { register } = useAuth();
@@ -74,9 +67,13 @@ async function handleRegister(payload: RegisterPayload, node?: FormKitNode) {
   try {
     await register(payload);
   } catch (e: unknown) {
-    if (e instanceof AxiosError && e.response?.status === 422) {
-      node?.setErrors([], e.response?.data.errors);
-    }
+
+    // console.log(e.response)
+    // if (axios.isAxiosError(e) && e.response?.status === 422) {
+    // console.log("Hello world")
+    node?.setErrors(["Veuillez corriger les erreurs ci-dessus"],
+      { name: "Veuillez bien remplir ce champ !", password: "Veuillez bien remplir ce champ !" });
+    // }
   }
 }
 </script>
