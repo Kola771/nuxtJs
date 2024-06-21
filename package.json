@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@formkit/i18n": "^1.6.5",
     "@formkit/nuxt": "^1.6.5",
     "@formkit/vue": "^1.6.5",
     "@nuxtjs/tailwindcss": "^6.12.0",
