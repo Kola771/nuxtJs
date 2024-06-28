@@ -1,0 +1,1 @@
+export { default } from "file:///C:/Users/kolade.aboudou/Desktop/devoir_tiburce/kolade.urlshortener.com/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
